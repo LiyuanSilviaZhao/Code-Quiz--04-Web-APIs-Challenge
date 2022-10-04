@@ -8,7 +8,7 @@
     <title>Code Quiz</title>
   </head>
   <body>
-    <h3>view Highscores</h3>
+    <h3 id ="score-tag">view Highscores</h3>
     <h3 id ="timer-count"></h3>
     
     <main> 
@@ -25,16 +25,21 @@
                 <h4 class="answer" id = "option2"></h4>
                 <h4 class="answer" id = "option3"></h4>
                 <h4 class="answer" id = "option4"></h4>
+                <h3 id="check-answer"></h3>
             </div>
         </section>
         <section id="result" style="display:none">
-            <h1>All Done!</h1>
-            <h2>Your final score is <span id="score" ></span></h2>
-            <h2>Enter initials: <input type="text" id="intials"> </h2>          
-            <button id="submit-initials">Submit</button>
+          <h1>All Done!</h1>
+          <h2>Your final score is <span id="score" ></span></h2>
+          <h2>Enter initials: <input type="text" id="initials"></h2>          
+          <button id="submit-initials">Submit</button>
         </section>
         <section id="score-board" style="display:none">
-
+          <h1>Highscores</h1>
+          <ol id="ranking">
+          </ol>
+          <button id="go-back"> Go Back</button>
+          <button id="clear"> Clear Highscores</button>  
         </section>
     </main>
     

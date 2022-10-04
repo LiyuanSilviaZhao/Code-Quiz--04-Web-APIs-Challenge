@@ -50,14 +50,25 @@ var answer = document.querySelectorAll(".answer");
 var introSec = document.querySelector("#intro");
 var quizSec = document.querySelector("#quiz");
 var resultSec = document.querySelector("#result");
+var scoreSec = document.querySelector("#score-board");
 var scoreNum = document.querySelector("#score");
+var initSubmitBtn = document.querySelector("#submit-initials");
+var initialText = document.getElementById("initials");
+var rank = document.querySelector("#ranking");
+var goBackBtn = document.querySelector("#go-back");
+var clearBtn = document.querySelector("#clear");
+var check = document.querySelector("#check-answer");
+var scoreT = document.querySelector("#score-tag");
+
 
 // global variables
 var index = 0;
 var timerCount = 50;
 var timer;
+var allScores = [];
+var personNum = 0;
 
-//
+//Set up countdown timer
 function setTime(){
     timer = setInterval(function() {
         if (timerCount > 0) {
@@ -72,6 +83,7 @@ function setTime(){
     }, 1000);
 }
 
+//showing quiz section
 function startQuiz(){
     introSec.style.display = "none";
     quizSec.style.display ="block";
@@ -84,12 +96,14 @@ function startQuiz(){
     option4.textContent = question.option4;    
 }
 
+//showing questions and answers with countdown 
 function handleSelection(event){
     if(timerCount > 0 ){
         index++;
         if(index < questions.length){
             var element = event.target.id;
             if(element !== questions[index].correctOption){
+                check.textContent = "Wrong!";
                 if(timerCount < 15){
                     timerCount = 0;
                     showResult();
@@ -98,6 +112,7 @@ function handleSelection(event){
                     startQuiz();             
                 } 
             } else {
+                check.textContent = "Correct!";
                 startQuiz();
             }
         } else {
@@ -108,12 +123,76 @@ function handleSelection(event){
     }
 }
 
-//
+//show result individual score function
 function showResult(){
     clearInterval(timer);
+    check.textContent = ""; 
     quizSec.style.display = "none";
     resultSec.style.display = "block";
     scoreNum.textContent = timerCount;
+    index = 0;
+}
+
+//show score records 
+function showScores(){
+    introSec.style.display = "none";
+    quizSec.style.display = "none";
+    resultSec.style.display = "none";
+    scoreSec.style.display = "block";
+    saveScore();
+    renderScores();
+}
+
+//save score with initial to local storage
+function saveScore(){
+    var scoreInfo = {
+        name: initialText.value,
+        score: timerCount
+    };
+    allScores[personNum] = scoreInfo;
+    personNum ++;
+    localStorage.setItem("allScores", JSON.stringify(allScores));
+    console.log(allScores);
+    initialText.value = "";
+}
+
+//get score with initial from local storage and show 
+function renderScores(){
+    rank.textContent = "";
+    var storedScores = JSON.parse(localStorage.getItem("allScores"));
+
+    for (var i = 0; i < storedScores.length; i++){
+        var score = storedScores[i];
+        console.log(score);
+        var l = document.createElement("li");
+        l.textContent = score.name + " : " + score.score;
+        rank.appendChild(l); 
+    }
+}
+
+//go back to the intro page 
+function goBack(){
+    timerCount = 50;
+    introSec.style.display = "block";
+    quizSec.style.display = "none";
+    resultSec.style.display = "none";
+    scoreSec.style.display = "none";
+}
+
+//clear score records in local storage 
+function clearScores(){
+    allScores = [];
+    personNum = 0;
+    localStorage.clear();
+    rank.textContent = "";
+}
+
+//show score by clicking "view Highscores"
+function showScoresSection(){
+    introSec.style.display = "none";
+    quizSec.style.display = "none";
+    resultSec.style.display = "none";
+    scoreSec.style.display = "block";
 }
 
 // Add listeners
@@ -122,6 +201,11 @@ startBtn.addEventListener("click", startQuiz);
 for(var i=0; i <answer.length; i++){
     answer[i].addEventListener("click", handleSelection);
 }
+initSubmitBtn.addEventListener("click", showScores);
+goBackBtn.addEventListener("click", goBack);
+clearBtn.addEventListener("click", clearScores);
+scoreT.addEventListener("click",showScoresSection);
+
 
 
     
