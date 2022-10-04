@@ -66,7 +66,7 @@ var index = 0;
 var timerCount = 75;
 var timer;
 var allScores = [];
-var personNum = 
+var personNum = 0;
 
 //Set up countdown timer
 function setTime(){
