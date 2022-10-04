@@ -8,10 +8,12 @@
     <title>Code Quiz</title>
   </head>
   <body>
-    <h3 id ="score-tag">view Highscores</h3>
-    <h3 id ="timer-count"></h3>
-    
+    <header>
+      <h3 id ="score-tag">View Highscores</h3>
+      <h3 id ="timer-count">Time : </h3>
+    </header>
     <main> 
+      <div id="main-content">
         <section id="intro">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following questionswithin the time limit.
@@ -21,10 +23,12 @@
         <section id="quiz" style="display:none">
             <div id="quiz-questions">
                 <h2 id = "question-info"></h2>
-                <h4 class="answer" id = "option1"></h4>
-                <h4 class="answer" id = "option2"></h4>
-                <h4 class="answer" id = "option3"></h4>
-                <h4 class="answer" id = "option4"></h4>
+                <div id="answer-part">
+                  <h4 class="answer" id = "option1"></h4>
+                  <h4 class="answer" id = "option2"></h4>
+                  <h4 class="answer" id = "option3"></h4>
+                  <h4 class="answer" id = "option4"></h4>
+                </div>
                 <h3 id="check-answer"></h3>
             </div>
         </section>
@@ -41,6 +45,7 @@
           <button id="go-back"> Go Back</button>
           <button id="clear"> Clear Highscores</button>  
         </section>
+      </div>
     </main>
     
     <script src="script.js"></script>

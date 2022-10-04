@@ -2,42 +2,42 @@
 var questions = [
     {   
         "questionInfo":"question #1",
-        "option1":"A",
-        "option2":"B",
-        "option3":"C",
-        "option4":"D",
+        "option1":"Choose A",
+        "option2":"Choose B",
+        "option3":"Choose C",
+        "option4":"Choose D",
         "correctOption":"option1",
     },
     {   
         "questionInfo":"question #2",
-        "option1":"A",
-        "option2":"B",
-        "option3":"C",
-        "option4":"D",
-        "correctOption":"option2",
+        "option1":"Want A",
+        "option2":"Want B",
+        "option3":"Want C",
+        "option4":"Want D",
+        "correctOption":"option4",
     },
     {   
         "questionInfo":"question #3",
-        "option1":"A",
-        "option2":"B",
-        "option3":"C",
-        "option4":"D",
+        "option1":"A is right",
+        "option2":"B is right",
+        "option3":"C is right",
+        "option4":"D is right",
         "correctOption":"option2",
     },    
     {   
         "questionInfo":"question #4",
-        "option1":"A",
-        "option2":"B",
-        "option3":"C",
-        "option4":"D",
-        "correctOption":"option2",
+        "option1":"A - yeah!",
+        "option2":"B - yeah!",
+        "option3":"C - yeah!",
+        "option4":"D - yeah!",
+        "correctOption":"option3",
     },
     {   
         "questionInfo":"question #5",
-        "option1":"A",
-        "option2":"B",
-        "option3":"C",
-        "option4":"D",
+        "option1":"A -GOGOGO",
+        "option2":"B -GOGOGO",
+        "option3":"C -GOGOGO",
+        "option4":"D -GOGOGO",
         "correctOption":"option2",
     }
 ]
@@ -63,10 +63,10 @@ var scoreT = document.querySelector("#score-tag");
 
 // global variables
 var index = 0;
-var timerCount = 50;
+var timerCount = 75;
 var timer;
 var allScores = [];
-var personNum = 0;
+var personNum = 
 
 //Set up countdown timer
 function setTime(){
@@ -152,7 +152,6 @@ function saveScore(){
     allScores[personNum] = scoreInfo;
     personNum ++;
     localStorage.setItem("allScores", JSON.stringify(allScores));
-    console.log(allScores);
     initialText.value = "";
 }
 
@@ -163,7 +162,6 @@ function renderScores(){
 
     for (var i = 0; i < storedScores.length; i++){
         var score = storedScores[i];
-        console.log(score);
         var l = document.createElement("li");
         l.textContent = score.name + " : " + score.score;
         rank.appendChild(l); 
@@ -172,7 +170,7 @@ function renderScores(){
 
 //go back to the intro page 
 function goBack(){
-    timerCount = 50;
+    timerCount = 75;
     introSec.style.display = "block";
     quizSec.style.display = "none";
     resultSec.style.display = "none";
